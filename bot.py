@@ -68,9 +68,9 @@ try:
         logging.info('Wrote feed to {0}'.format(os.path.abspath(filename)))
 
 
-        #subprocess.Popen(["s3cmd", "put", "--acl-public", filename, config['s3cmd_bucket_url']])
+        subprocess.Popen(["s3cmd", "put", "--acl-public", filename, config['s3cmd_bucket_url']])
 
-        #logging.info('Sent file to {0}'.format(config['s3cmd_bucket_url']))
+        logging.info('Sent file to {0}'.format(config['s3cmd_bucket_url']))
 
 
         await client.close()
