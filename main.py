@@ -2,6 +2,7 @@ import subprocess
 import argparse
 import json
 import os
+import traceback
 
 from discord_rss import make_discord_feed
 
@@ -30,5 +31,5 @@ try:
     print('Finished run')
 
 
-except Exception as e:
-    print(f"ERROR: {e}")
+except Exception:
+    print(f"ERROR: {traceback.format_exc()}")
