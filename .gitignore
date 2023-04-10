@@ -1,2 +1,4 @@
-*.json
 *.ipynb
+
+configs/*
+!configs/example.json
