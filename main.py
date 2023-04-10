@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import traceback
+import time
 
 from discord_rss import make_discord_feed
 
@@ -25,6 +26,7 @@ try:
     with open(filename, 'w', encoding='utf-8') as file:
         file.write(feed_xml)
     subprocess.Popen(["s3cmd", "put", "--acl-public", filename, config['bucket_url']])
+    time.sleep(2)
     os.remove(filename)
     print(f"Sent file to {config['bucket_url']}")
 
