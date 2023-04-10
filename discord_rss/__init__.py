@@ -1,1 +1,1 @@
-from discord_rss.utils import get_messages, create_feed
+from discord_rss.utils import make_discord_feed
