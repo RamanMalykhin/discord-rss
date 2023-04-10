@@ -14,7 +14,7 @@ def get_messages(token, channel_id):
 
     return messages
 
-def create_feed_items(messages):
+def create_feed_items(messages, channel_id, guild_id):
     # create feed items from list of discord messages
     feed_items = []
 
@@ -25,7 +25,7 @@ def create_feed_items(messages):
     for message in messages:
         message_reference = message['message_reference']
 
-        message_link = f"https://discord.com/channels/{message_reference['guild_id']}/{message_reference['channel_id']}/{message_reference['message_id']}"
+        message_link = f"https://discord.com/channels/{guild_id}/{channel_id}/{message_reference['id']}"
         
         feed_items.append(rfeed.Item(
             title=message['content'][:50],
@@ -58,7 +58,7 @@ def make_discord_feed(config):
     discord_messages = get_messages(config['token'], config['channel_id'])
     print(f"Received messages from {config['channel_id']}")
 
-    feed_items = create_feed_items(discord_messages)
+    feed_items = create_feed_items(discord_messages, config['channel_id'], config['guild_id'])
     print(f"Created feed items {config['job_name']}")
 
     feed = create_feed(feed_items, config['job_name'], config['guild_id'], config['channel_id'])
