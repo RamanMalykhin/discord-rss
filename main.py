@@ -24,7 +24,7 @@ try:
     filename = config['job_name']+'.xml'
     with open(filename, 'w', encoding='utf-8') as file:
         file.write(feed_xml)
-    subprocess.Popen(["s3cmd", "put", "--acl-public", filename, config['s3cmd_bucket_url']])
+    subprocess.Popen(["s3cmd", "put", "--acl-public", filename, config['bucket_url']])
     os.remove(filename)
     print(f"Sent file to {config['bucket_url']}")
 
