@@ -23,9 +23,8 @@ def create_feed_items(messages, channel_id, guild_id):
 
     #create feed items for each message
     for message in messages:
-        message_reference = message['message_reference']
 
-        message_link = f"https://discord.com/channels/{guild_id}/{channel_id}/{message_reference['id']}"
+        message_link = f"https://discord.com/channels/{guild_id}/{channel_id}/{message['id']}"
         
         feed_items.append(rfeed.Item(
             title=message['content'][:50],
