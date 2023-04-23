@@ -26,10 +26,12 @@ def create_feed_items(messages, channel_id, guild_id):
 
         message_link = f"https://discord.com/channels/{guild_id}/{channel_id}/{message['id']}"
         
+        message_content_with_fixed_links = re.sub("<(https?://\S+)>"," \n \g<1> \n ",message['content'])
+
         feed_items.append(rfeed.Item(
             title=message['content'][:50],
             link=message_link,
-            description=message['content'],
+            description=message_content_with_fixed_links,
             author=message['author']['username'],
             guid=rfeed.Guid(message_link)
         ))
